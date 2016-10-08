@@ -1,0 +1,9 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# API Endpoints
+PUT   /transactionservice/transaction/:transaction_id  controllers.Application.saveTransaction(transaction_id: Long)
+GET   /transactionservice/transaction/:transaction_id  controllers.Application.getTransaction(transaction_id: Long)
+GET   /transactionservice/types/:type_name controllers.Application.getIds(type_name: String)
+GET   /transactionservice/sum/:transaction_id controllers.Application.getSum(transaction_id: Long)
