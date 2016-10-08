@@ -36,7 +36,7 @@ object Application extends Controller {
       Ok(Json.toJson(Transact.getTransaction(id)))
     }
     catch{
-      case e:NoSuchElementException => BadRequest("Transaction not found!")
+      case e:NoSuchElementException => BadRequest("{error: Transaction not found!}")
     }
   }
 
