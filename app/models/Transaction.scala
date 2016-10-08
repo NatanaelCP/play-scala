@@ -28,7 +28,7 @@ object Transact {
       case Some(x:Transact) => {
         var am = x.amount
         transactions foreach {case(key,value) => value.parent_id match {
-          case Some(y:Long) => if(y == id && key != id) am += value.amount else am
+          case Some(y:Long) => if(id == y && id != key) am += value.amount else am
           case None => am
           }
         }
