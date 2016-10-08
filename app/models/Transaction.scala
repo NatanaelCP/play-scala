@@ -10,6 +10,7 @@ case class Sum(sum: Double)
 
 object Transact {
   var transactions:Map[Long,Transact] = Map()
+
   def save(id: Long, transact: Transact) = {
     transactions += (id -> transact)
   }

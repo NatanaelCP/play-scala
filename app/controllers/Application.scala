@@ -9,7 +9,7 @@ import play.api.libs.functional.syntax._
 object Application extends Controller {
 
   /**
-    * Formats a Transaction instance as JSON.
+    * Formats Transact instance as JSON.
     */
   implicit val TransactionWrites: Writes[Transact] = (
       (JsPath \ "amount").write[Double] and
