@@ -12,7 +12,9 @@ object Transact {
   private var transactions:Map[Long,Transact] = Map()
 
   def save(id: Long, transact: Transact) = {
-    transactions += (id -> transact)
+    this.synchronized {
+      transactions += (id -> transact)
+    }
   }
 
   def getTransaction(id: Long): Transact = transactions(id)
