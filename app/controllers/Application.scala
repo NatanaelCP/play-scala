@@ -49,8 +49,8 @@ object Application extends Controller {
         }
       },
       valid = {
-        Transact => {
-          save(id, Transact)
+        transaction => {
+          save(id, transaction)
           Ok(Json.obj("status" -> "OK"))
         }
       }
