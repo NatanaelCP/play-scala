@@ -20,9 +20,8 @@ object Transact {
   def getTransaction(id: Long): Transact = transactions(id)
 
   def getIds(type_name: String): List[Long] = {
-    var ids:List[Long] = List()
-    transactions foreach {case(key,value) => if (value.type_name == type_name) ids = key :: ids}
-    ids.sorted
+
+    transactions.collect { case (key, value) if(value.type_name == type_name) => key }.toList
   }
 
   def getSum(id: Long): Sum = {
