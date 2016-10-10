@@ -25,18 +25,15 @@ object Transact {
   }
 
   def getSum(id: Long): Sum = {
-    val amount:Double = transactions.get(id) match {
-      case Some(x:Transact) => {
-        var am = x.amount
-        transactions foreach {case(key,value) => value.parent_id match {
-          case Some(y:Long) => if(id == y && id != key) am += value.amount else am
-          case None => am
+    Sum (
+      transactions
+        .filter { case (key, value) => value.parent_id match {
+          case Some(y:Long) => y == id || key == id
+          case None => key == id
           }
         }
-        am
-      }
-      case None  => 0
-    }
-    Sum(amount)
+        .map { case (_, value) => value.amount}
+        .sum
+    )
   }
 }
