@@ -20,8 +20,10 @@ object Transact {
   def getTransaction(id: Long): Transact = transactions(id)
 
   def getIds(type_name: String): List[Long] = {
-
-    transactions.collect { case (key, value) if(value.type_name == type_name) => key }.toList
+    transactions
+      .view
+      .collect {case (key, value) if(value.type_name == type_name) => key}
+      .toList
   }
 
   def getSum(id: Long): Sum = {
@@ -32,7 +34,7 @@ object Transact {
           case None => key == id
           }
         }
-        .map { case (_, value) => value.amount}
+        .map {case (_, value) => value.amount}
         .sum
     )
   }
