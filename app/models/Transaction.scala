@@ -10,11 +10,13 @@ case class Sum(sum: Double)
 
 object Transact {
   private var transactions:Map[Long,Transact] = Map()
+  private val Lock = new Object
 
-  def save(id: Long, transact: Transact) = {
-    this.synchronized {
-      transactions += (id -> transact)
-    }
+  def save(id: Long, transact: Transact) =  {
+
+    Lock.synchronized {
+     transactions += (id -> transact)
+   }
   }
 
   def getTransaction(id: Long): Transact = transactions(id)
