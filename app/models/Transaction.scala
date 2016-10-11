@@ -31,6 +31,7 @@ object Transact {
   def getSum(id: Long): Sum = {
     Sum (
       transactions
+        .view
         .filter { case (key, value) => value.parent_id match {
           case Some(y:Long) => y == id || key == id
           case None => key == id
